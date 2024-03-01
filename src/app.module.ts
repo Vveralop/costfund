@@ -1,29 +1,29 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { Database } from './adapter/database/database.module';
-import { HealthModule } from './domain/health/health.module';
-import { InterceptorModule } from './shared/interceptor/interceptor.module';
-import { UtilsModule } from './shared/utils/utils.module';
-import { LoggerModule } from './adapter/Logger/logger.module';
-//import { FundingModule } from './domain/funding/funding.module';
 import { ProductModule } from './domain/product/product.module';
 import { CfquoteModule } from './domain/cfquote/cfquote.module';
+import { HealthModule } from './domain/health/health.module';
+import { ConfigModule } from '@nestjs/config';
 import { PricingModule } from './domain/pricing/pricing.module';
+import { LoggerModule } from './adapter/Logger/logger.module';
+import { InterceptorModule } from './shared/interceptor/interceptor.module';
+import { UtilsModule } from './shared/utils/utils.module';
 
 @Module({
   imports: [
-    UtilsModule,
-    ConfigModule.forRoot({isGlobal: true}),
+    ConfigModule.forRoot({ isGlobal: true }),
     Database,
     InterceptorModule,
-    LoggerModule,
     HealthModule,
-    //FundingModule,
+    UtilsModule,
+    LoggerModule,
+    PricingModule,
     ProductModule,
     CfquoteModule,
-    PricingModule
   ],
-  controllers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
-

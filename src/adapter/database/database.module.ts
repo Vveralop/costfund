@@ -5,10 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: '192.168.100.63',
       port: 5432,
       username: 'postgres', //process.env.ACCESSKEYID,
-      password: 'admin', //process.env.SECRETACCESSKEY,
+      password: 'Test01', //process.env.SECRETACCESSKEY,
       database: 'postgres',
       entities: [__dirname + '/../**/*.entity{.ts, .js}'],
       synchronize: true,
